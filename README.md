@@ -1,3 +1,7 @@
+Hugging face space for testeing yolo26 segmentation: https://huggingface.co/spaces/luanamcosta/yolo26segmentation
+
+
+
 ---
 title: Yolo26segmentation
 emoji: 📈
