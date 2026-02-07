@@ -1,9 +1,11 @@
 import numpy as np
 import cv2
-from PIL import Image
 import matplotlib
+from PIL import Image, ImageOps
 
 def resize_image(img, max_size=640):
+    img = ImageOps.exif_transpose(img)
+
     w, h = img.size
     scale = max_size / max(w, h)
     if scale < 1:

@@ -42,8 +42,20 @@ def run_inference(model, files, conf, labels=None):
             for cls, mask in zip(result.boxes.cls, result.masks.data):
                 label = result.names[int(cls)]
                 mask_np = mask.cpu().numpy()
-                mask_np = cv2.resize(mask_np, (img_np.shape[1], img_np.shape[0]))
-                heatmaps[label] = heatmaps.get(label, 0) + mask_np
+                mask_np = cv2.resize(
+                    mask_np,
+                    (img_np.shape[1], img_np.shape[0])
+                )
+
+                if label in heatmaps:
+                    existing_shape = heatmaps[label].shape
+                    mask_np_resized = cv2.resize(
+                        mask_np,
+                        (existing_shape[1], existing_shape[0])
+                    )
+                    heatmaps[label] += mask_np_resized
+                else:
+                    heatmaps[label] = mask_np
 
         annotated = cv2.cvtColor(result.plot(), cv2.COLOR_BGR2RGB)
         outputs.append(annotated)

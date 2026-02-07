@@ -31,7 +31,7 @@ def detect_open(files, labels_text, conf):
     return imgs, plot_counter(counter), build_heatmaps(heatmaps)
 
 with gr.Blocks() as demo:
-    gr.Markdown("# 🔍 YOLO26 / YOLOE26 – Segmentation, Count & Heatmaps")
+    gr.Markdown("# YOLO26 / YOLOE26 – Segmentation, Count & Heatmaps")
 
     with gr.Tabs():
         with gr.Tab("Normal"):
